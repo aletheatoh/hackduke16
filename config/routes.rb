@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'users#index'
   resources :homes
+  resources :users
   devise_for :users, :controllers => {:sessions => 'devise/sessions', :registrations => 'users/registrations'} do
   # get "/login", :to => "devise/sessions#new", :as => :login
   # get "/signup", :to => "devise/registrations#new", :as => :signup
