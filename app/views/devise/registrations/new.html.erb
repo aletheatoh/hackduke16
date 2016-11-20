@@ -21,9 +21,40 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.text_field :age, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nationality %><br />
+    <%= f.text_field :nationality, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :occupation %><br />
+    <%= f.text_field :occupation, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :dob, 'Date of Birth' %><br />
+    <%= f.text_field :dob, autofocus: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+<!-- add_column :users, :age, :string
+add_column :users, :gender, :string
+add_column :users, :nationality, :string
+add_column :users, :occupation, :string
+add_column :users, :dob, :date -->
