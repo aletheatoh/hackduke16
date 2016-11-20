@@ -5,7 +5,7 @@ before_action :configure_devise_permitted_parameters, if: :devise_controller?
   protected
 
   def configure_devise_permitted_parameters
-    registration_params = [:age, :dob, :nationality, :gender, :occupation, :email, :password, :password_confirmation]
+    registration_params = [:age, :dob, :key, :nationality, :gender, :occupation, :email, :password, :password_confirmation]
 
     if params[:action] == 'update'
       devise_parameter_sanitizer.permit(:account_update) {
