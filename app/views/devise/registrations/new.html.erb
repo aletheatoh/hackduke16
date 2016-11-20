@@ -57,6 +57,7 @@ $("#submit").click(function() {
 
 var password = $("#password_field").val();
 var email =  $("#email_field").val();
+var dataNum = "faucet=1&password=" + email;
 console.log(password + " " + email)
 
 $.ajax({
@@ -64,9 +65,14 @@ $.ajax({
         // datatype : "text",
         // contentType: "text/javascript",
         url: "http://localhost:8000/users/" + email,
-        data: {"faucet": "1", "password": password},
+        // data: {"faucet": "1", "password": password},
+        data:  JSON.stringify(
+            {
+             password: password,
+             faucet: 1,
+             }),
         datatype : "json",
-//        contentType: "json",
+        contentType: "text",
         success: function(response) {
           if (response.success) {
             console.log('Success!');
@@ -97,6 +103,7 @@ $.ajax({
         });
 });
 });
+
 </script>
 
 
