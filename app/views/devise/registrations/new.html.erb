@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, :id=>"email_field", autofocus: true %>
   </div>
 
   <div class="field">
@@ -13,7 +13,7 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, :id=>"password_field", autocomplete: "off" %>
   </div>
 
   <div class="field">
@@ -45,12 +45,59 @@
     <%= f.label :dob, 'Date of Birth' %><br />
     <%= f.date_field :dob, autofocus: true %>
   </div>
-  
-  <div class="actions">
+
+  <div class="actions" id="submit">
     <%= f.submit "Sign up" %>
   </div>
-<% end %>
 
+<% end %>
+<script>
+$(document).ready(function(e) {
+$("#submit").click(function() {
+
+var password = $("#password_field").val();
+var email =  $("#email_field").val();
+console.log(password + " " + email)
+
+$.ajax({
+        type: "POST",
+        // datatype : "text",
+        // contentType: "text/javascript",
+        url: "http://localhost:8000/users/" + email,
+        data: {"faucet": "1", "password": password},
+        datatype : "json",
+//        contentType: "json",
+        success: function(response) {
+          if (response.success) {
+            console.log('Success!');
+            console.log(response.responseText);
+          } else {
+              console.log('Failure!');
+              console.log(response);
+          }
+        },
+        error: function(xhr, status, text) {
+          var response = $.parseJSON(xhr.responseText);
+
+          console.log('Failure!');
+          console.log(status);
+          console.log(text);
+          console.log(xhr);
+          if (response) {
+              console.log(response.error);
+          } else {
+              // This would mean an invalid response from the server - maybe the site went down or whatever...
+              console.log("server failure")
+          }
+        }
+      })
+        .done( function( response ) {
+          console.log(response);
+          console.log("hit")
+        });
+});
+});
+</script>
 
 
 <%= render "devise/shared/links" %>
