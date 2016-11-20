@@ -43,18 +43,14 @@
 
   <div class="field">
     <%= f.label :dob, 'Date of Birth' %><br />
-    <%= f.text_field :dob, autofocus: true %>
+    <%= f.date_field :dob, autofocus: true %>
   </div>
-
+  
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
 
-<!-- add_column :users, :age, :string
-add_column :users, :gender, :string
-add_column :users, :nationality, :string
-add_column :users, :occupation, :string
-add_column :users, :dob, :date -->
+
+<%= render "devise/shared/links" %>
